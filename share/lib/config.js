@@ -5,12 +5,12 @@ const CODENAME = 'point zero'
 const DESCRIPTION = '「ゼロからスタートする」'
 
 const CONFIG_DEFAULT = {
-  lang: 'ko',
+  lang: 'cn',
   style: {
     // body
     'resize-factor': 1,
     'body-margin': '0.25rem',
-    'body-font': "'Lato', 'Source Han Sans', 'Meiryo UI', '맑은 고딕', sans-serif",
+    'body-font': "'黑体', 'Lato', 'Source Han Sans', 'Meiryo UI', '맑은 고딕', sans-serif",
     // header / ui
     'nav-opacity': 1,
     'nav-bg': 'rgba(31, 31, 31, 0.9)',
@@ -30,54 +30,37 @@ const CONFIG_DEFAULT = {
     'shadow-card': '0 0.05rem 0.25rem rgba(0, 0, 0, 0.5)',
     'shadow-text': '0 0 0.125em rgba(0, 0, 0, 1)',
     'font-size-small': '0.75rem',
-    'gauge-height': '10%',
+    'gauge-height': '100%',
     'graph-height': '1.5rem'
   },
   tabs: [
     {
       id: 0,
-      label: 'DPS',
+      label: '输出',
       width: 1,
       sort: 'deal.total',
       col: [
-        'i.icon',
-        'i.name',
-        'deal.pct',
-        'deal.per_second',
-        'deal.critical',
-        'deal.direct',
-        'deal.crit_direct'
+        "i.icon", "i.name", "deal.pct", "deal.per_second", "deal.critical", "deal.direct", "deal.maxhit", "etc.death"
       ]
     }, {
       id: 1,
-      label: 'Tank',
+      label: '承伤',
       width: 1,
       sort: 'tank.damage',
       col: [
-        'i.icon',
-        'i.name',
-        'deal.per_second',
-        'tank.damage',
-        'tank.heal',
-        'etc.death'
+        "i.icon", "i.name", "deal.per_second", "tank.damage", "tank.heal", "etc.death"
       ]
     }, {
       id: 2,
-      label: 'Heal',
+      label: '治疗',
       width: 1,
       sort: 'heal.total',
       col: [
-        'i.icon',
-        'i.name',
-        'heal.pct',
-        'heal.per_second',
-        'heal.total',
-        'heal.over',
-        'heal.swing'
+        "i.icon", "i.name", "heal.pct", "deal.per_second", "heal.total", "heal.over", "heal.swing", "etc.death"
       ]
     }, {
       id: 3,
-      label: '24',
+      label: '24人',
       width: 3,
       sort: 'deal.total',
       col: [
@@ -132,7 +115,7 @@ const CONFIG_DEFAULT = {
   },
   color: {
     'gauge-default': '#444',
-    'gauge-opacity': '1',
+    'gauge-opacity': '0.45',
     pld: 'rgb(21, 28, 100)', // Indigo 900 (B -10%)
     war: 'rgb(153, 23, 23)', // Red 900 (B -10%)
     drk: 'rgb(136, 14, 79)', // Pink 900

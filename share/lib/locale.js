@@ -20,7 +20,7 @@
     }
 
     load(lang, callback, forceReload) {
-      if(!lang) lang = this.current || 'en'
+      if(!lang) lang = this.current || 'cn'
 
       if(lang in this.L && forceReload) {
         if(callback) callback(this.L[lang])
@@ -58,7 +58,8 @@
     skillname(n, useAlias) {
       if(!n) return [n, -1]
 
-      let o = n.split('-')
+      const index = n.lastIndexOf('-');
+      const o = index !== -1 ? [n.slice(0, index), n.slice(index + 1)] : [n];
       let dot = this._skill(o[0])
       let name = this.get('skill.' + dot[0]) || dot[0]
       let value = o[1] || -1

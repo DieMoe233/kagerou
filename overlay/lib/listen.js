@@ -7,9 +7,10 @@
   const toArray = o => Object.keys(o).map(_ => o[_])
   const SORTABLE = {}
 
-  COLUMN_SORTABLE.map(_ => {
-    let o = resolveDotIndex(COLUMN_INDEX, _)
-    SORTABLE[_] = o.v || o
+  COLUMN_SORTABLE.forEach(_ => {
+    let k = _.substr('+-'.indexOf(_[0]) >= 0)
+    let o = resolveDotIndex(COLUMN_INDEX, k)
+    SORTABLE[k] = o.v || o
   })
 
   class Data {
@@ -93,7 +94,7 @@
 
     sort(key, target) {
       let d = (('+-'.indexOf(key[0]))+1 || 1) * 2 - 3
-      let k = SORTABLE[key]
+      let k = SORTABLE[key.substr('+-'.indexOf(key[0]) >= 0)]
       ;(target || this.data).sort((a, b) => (pFloat(a[k]) - pFloat(b[k])) * d)
 
       if(target) return target
@@ -130,7 +131,7 @@
     push(data) {
       if(!data || !data.Encounter || data.Encounter.hits < 1) return
 
-      if(this.isNewEncounter(data.Encounter)) {
+      if(this.isNewEncounter(data.Encounter, data.isActive)) {
         if(config.get('format.myname').length === 0
         && NICK_REGEX.test(data.Encounter.title)) {
           let nick = NICK_REGEX.exec(data.Encounter.title)[1]
@@ -157,25 +158,27 @@
       }
     }
 
-    updateLastEncounter(encounter) {
+    updateLastEncounter(encounter, isActive) {
       this.lastEncounter = {
         hits: encounter.hits,
         region: encounter.CurrentZoneName,
         damage: encounter.damage,
-        duration: parseInt(encounter.DURATION)
+        duration: parseInt(encounter.DURATION),
+        isActive: isActive
       }
     }
 
-    isNewEncounter(encounter) {
+    isNewEncounter(encounter, isActive) {
       let really = (
         !this.lastEncounter
       || this.lastEncounter.region !== encounter.CurrentZoneName
-      || this.lastEncounter.duration > parseInt(encounter.DURATION)
+      || this.lastEncounter.isActive !== isActive
       // ACT-side bug (scrambling data) making this invalid!
+      // || this.lastEncounter.duration > parseInt(encounter.DURATION)
       // || this.lastEncounter.damage > encounter.damage
       // || this.lastEncounter.hits > encounter.hits
       )
-      this.updateLastEncounter(encounter)
+      this.updateLastEncounter(encounter, isActive)
       return really
     }
 

@@ -154,15 +154,16 @@
           max['deal.per_second'] >= 1000 &&
           window.config.get('format.small_lower_numbers'))
 
-      let rank = 0
+      let playerRank = 0
 
       let table = $('#table')
       table.innerHTML = ''
 
       for(let i in d) {
         let o = d[i]
+        o.rank = parseInt(i) + 1
         if(isYou(o.name, this.config.format.myname)) {
-          rank = parseInt(i) + 1
+          playerRank = o.rank
         }
         table.appendChild(this.template.render(o, max))
       }
@@ -182,16 +183,16 @@
           this.config.element['use-header-instead']) {
         if(this.config.footer.rank) {
           let el = this.elem.rank
-          el.firstChild.textContent = rank
+          el.firstChild.textContent = playerRank
           el.lastChild.textContent = '/' + d.length
         }
         if(this.config.footer.rdps) {
           this.elem.rdps.innerHTML =
-            formatDps(rdps, this.config.format.significant_digit.dps)
+            formatDps(pFloat(rdps), this.config.format, 'dps')
         }
         if(this.config.footer.rhps) {
           this.elem.rhps.innerHTML =
-            formatDps(rhps, this.config.format.significant_digit.hps)
+            formatDps(pFloat(rhps), this.config.format, 'hps')
         }
       }
 
@@ -227,7 +228,8 @@
         locale = `col.${c}.0`
         text = window.l.loaded? window.l.get(locale) : '...'
       } else {
-        const col = resolveDotIndex(COLUMN_INDEX, c)
+        let k = c.substr('+-'.indexOf(c[0]) >= 0)
+        const col = resolveDotIndex(COLUMN_INDEX, k)
 
         if(typeof col === 'string') {
           text = data[col]
@@ -251,7 +253,8 @@
 
     render(data, max) {
       let el = document.createElement('li')
-      let gaugeBy = resolveDotIndex(COLUMN_INDEX, this.tab.sort)
+      let k = this.tab.sort.substr('+-'.indexOf(this.tab.sort[0]) >= 0)
+      let gaugeBy = resolveDotIndex(COLUMN_INDEX, k)
       // this.tab.gauge) <- deprecated
 
       if(gaugeBy.v) {

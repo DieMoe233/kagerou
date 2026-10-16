@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <title> kagerou overlay </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Lato">
     <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="../share/css/job-icons.css" />
+    <link rel="stylesheet" href="../share/css/job-icons.css?v=6" />
+    <link rel="stylesheet" href="/font/Smartisan Compact CNS Light/?replaceName=黑体" />
     <script>
 try {
   var __test = new Function('a', "'use strict'; const b=(_=>`${_}`)(a); return b")(1)
@@ -19,49 +19,14 @@ try {
   }
 }
     </script>
-    <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js"></script>
+    <script src="../share/lib/util.js?v=v77"></script>
+    <script src="../share/lib/config.js?v=v77"></script>
+    <script src="../share/lib/ws-abstract.js?v=v77"></script>
+    <script src="../share/lib/locale.js?v=v77"></script>
+    <script src="lib/render.js?v=v77"></script>
+    <script src="lib/listen.js?v=v77"></script>
+    <script src="lib/ui.js?v=v77"></script>
     <script>
-'use strict'
-
-Raven && Raven.config('https://77d763feffdf45daa9a75517878489cd@s.hibiya.moe/2', {
-  // to who plays with forked source:
-  // please do *not* report your error to me. do NOT edit this, or simply
-  // remove raven-related codes.
-  whitelistUrls: [/hibiyasleep\.github\.io/, /kagerou\.hibiya\.moe/, /idyllshi.re/],
-  dataCallback: function(data) {
-    if(window.hist && window.hist.currentData) {
-      data.extra.currentData = JSON.stringify(window.hist.currentData)
-    }
-    return data
-  }
-}).install()
-
-    </script>
-    <script src="../share/lib/util.js?v=Fireworks-In-The-Summer-End"></script>
-    <script src="../share/lib/config.js?v=Fireworks-In-The-Summer-End"></script>
-    <script>
-'use strict'
-
-Raven && Raven.setRelease(VERSION)
-
-    </script>
-    <script src="../share/lib/ws-abstract.js?v=Fireworks-In-The-Summer-End"></script>
-    <script src="../share/lib/locale.js?v=Fireworks-In-The-Summer-End"></script>
-    <script src="lib/render.js?v=Fireworks-In-The-Summer-End"></script>
-    <script src="lib/listen.js?v=Fireworks-In-The-Summer-End"></script>
-    <script src="lib/ui.js?v=Fireworks-In-The-Summer-End"></script>
-    <script>
-'use strict'
-
-// temporal ACTWebSocket fix: Newer OverlayProc doesn't allow 'downgrade'
-// security, from https to unsecured websocket, and GitHub pages forces HTTPS.
-// I know this sucks.
-if(window.layer
-&& layer.type === 'ws'
-&& location.host === 'hibiyasleep.github.io') {
-  location.href = 'http://kagerou.hibiya.moe/overlay' + location.search
-}
-
 // config
 window.config = new Config()
 
@@ -73,6 +38,7 @@ config.attachOverlayStyle('overlay')
 window.hist = new History()
 
 window.addEventListener('load', e => {
+  $('.splash', 0).classList.add('hidden');
   // locale
   window.l = new Locale(window.config.get('lang'), e => {
     window.l.localizeAll()
@@ -95,14 +61,7 @@ window.addEventListener('load', e => {
         window.renderer.update()
       }
     })
-    layer.on('status', d => {
-      if(d.type === 'lock') {
-        document.body.classList.toggle(
-          'disable-handle',
-          d.message && config.get('element.resize-handle')
-        )
-      }
-    })
+    // layer.on('status')
     // layer.emit('restyle')
   })
 
@@ -111,7 +70,6 @@ window.addEventListener('load', e => {
     _.style.height = parseInt(_.getAttribute('height')) / 16 + 'rem'
   })
 
-  $('.splash', 0).classList.add('hidden')
 })
 
     </script>
@@ -119,18 +77,18 @@ window.addEventListener('load', e => {
   <body style="overflow:hidden" class="standby">
     <div class="splash">
       <div>
-        Failed to load - 초기화 실패
+        资源正在加载中，请耐心等待。
         <br />
-        See <a href="../outdated">here</a> for more info.
+        如果长时间卡在这里，说明您的浏览器不受支持。
         <br /><br />
         <button onclick="location.reload()">
-          재시도/Retry
+          重试
         </button>
         <button onclick="localStorage.setItem('kagerou_config','');location.reload()">
-          초기화/Reset
+          重置设置
         </button>
         <button onclick="window.open('../config/','kagerou - Settings','width=800,height=600')">
-          설정/Settings
+          设置
         </button>
       </div>
     </div>
@@ -187,21 +145,48 @@ window.addEventListener('load', e => {
       </div>
 
       <ul class="dropdown dropdown-list dropdown-history" id="dropdown-history">
-        <li class="empty">
-          <mark> 0.8.1 </mark> <span> end of world </span>
-          <br />
-          <span class="history-region"> FRENZY HOUSE </span>
-        </li>
-        <li class="empty">
+        <li class="empty" style="height: unset">
           <mark class="version"> ?.?.? </mark> <span class="codename">Unknown Release</span>
           <br />
           <span class="history-region description"> </span>
+          <br />
+          <span class="history-region"> </span>
         </li>
-        <!-- <li class="empty">
-          <mark> 0.8.0</mark>? <span> GAMBOL </span>
-          <br/>
-          <span class="history-region"> ANOTHER 12 </span>
-        </li> -->
+        <li class="empty">
+          <mark> 0.8.14 </mark> <span> minne </span>
+          <br />
+          <span class="history-region"> その旋律は紡がれ受け継がれていく </span>
+        </li>
+        <li class="empty">
+          <mark> 0.8.13 </mark> <span> viator in vitro </span>
+          <br />
+          <span class="history-region"> すべての旅人たちの 記憶はここに集う </span>
+        </li>
+        <li class="empty">
+          <mark> 0.8.12 </mark> <span> Supersymmetry </span>
+          <br />
+          <span class="history-region"> 最も美しいパラドックスは対称性である。 </span>
+        </li>
+        <li class="empty">
+          <mark> 0.8.11 </mark> <span> save your tears, save your dreams </span>
+          <br />
+          <span class="history-region"> ささやかな幻よ、煌け！ </span>
+        </li>
+        <li class="empty">
+          <mark> 0.8.10 </mark> <span> City of Mirrors </span>
+          <br />
+          <span class="history-region"> なんびとの心も映す鏡の如きヴォカリーズ曲 </span>
+        </li>
+        <li class="empty">
+          <mark> 0.8.9 </mark> <span> Northen Cross </span>
+          <br />
+          <span class="history-region"> 燦然とピアノを照らす もうひとつの十字星 </span>
+        </li>
+        <li class="empty">
+          <mark> 0.8.8 </mark> <span> Deprived World </span>
+          <br />
+          <span class="history-region"> …この儚くも美しい　「奪われた世界」を </span>
+        </li>
       </ul>
       <ul class="dropdown buttons right" id="dropdown-more">
         <li data-button="merge-pet" data-active-by="label"
@@ -291,18 +276,18 @@ window.addEventListener('load', e => {
           <li id="init-menu">
             <ul>
               <li class="text">
-                - @hibiyasleep
+                - hibiyasleep
               </li>
               <li class="button" data-button="donate">
                 <label data-locale="ui.menu.donate">기부</label>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                      viewBox="0 0 24 24" class="icon">
                   <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z" />
                 </svg>
               </li>
               <li class="button" data-button="settings">
                 <label data-locale="ui.menu.settings">설정</label>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                      viewBox="0 0 24 24" class="icon">
                   <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z" />
                 </svg>
@@ -310,89 +295,43 @@ window.addEventListener('load', e => {
             </ul>
           </li>
           <li id="patchnote">
-            <!-- svg xmlns="http://www.w3.org/2000/svg" width="416" height="128"
-                 viewBox="0 0 416 128"
-                 style="max-width: 100%; max-height: 3rem; margin-top: 0.5rem">
-            </svg -->
-            <h3> 0.8.2 'point zero' - 2019/12/14 </h3>
+            <h3> 0.8.15 'Audite Nostalgia' - 2024/07/01 </h3>
 
-            <p>
-              <span class="lang ko">푸터를 숨길 수 있습니다</span>
-              <span class="lang en de fr cn">Added option to hide footer</span>
-              <span class="lang ja">下部の黒い棒を非表示するができます。</span>
-              (<u onclick="config.toggle('element.hide-footer'); config.save(); layer.emit('message', { message: 'restyle' })">test</u>)
-            </p>
+            <p class="lang ko">- 7.0 직업 지원 추가</p>
+            <p class="lang en fr de">- 7.0 jobs added</p>
+            <p class="lang ja">- パッチ7.0のジョブに対応</p>
+            <p class="lang cn">- 新增了7.0的职业图标与文本</p>
+            <p> fixed by Yarukon </p>
 
-            <p>
-              <span class="lang ko">rdps를 위쪽에 띄울 수 있습니다</span>
-              <span class="lang en de fr cn">...and display RDPS on top</span>
-              <span class="lang ja">右下のrdpsや1/nのようなことを上に表示するができます</span>
-
-              (<u onclick="config.toggle('element.use-header-instead'); config.save(); layer.emit('message', { message: 'restyle' })">test</u>)
-            </p>
-
-            <h3> 0.8.1 'end of world' - 2019/12/14 </h3>
-
-            <p class="lang ko">
-              하단부 숫자 표시에 "1000 이하 숫자 작게" 옵션이 적용되지 않는 문제 수정
-            </p>
-            <p class="lang en de fr cn">
-              Fixed bug that "smaller fonts on number 1000" doesn't apply on
-              footer rdps section
-            </p>
-            <p class="lang ja">
-              下部の数字の表示にオプションが適用されないことを修正
-            </p>
-
-            <h3 class="lang ko"> 0.8.0 '잊어버리고 만 여름의 끝에' - 2019/07/01 </h3>
-            <h3 class="lang en de fr cn"> 0.8.0 'Fireworks In The Summer End' - 2019/07/01 </h3>
-            <h3 class="lang ja"> 0.8.0 '忘れてしまった夏の終わりに' - 2019/07/01 </h3>
-
-            <p class="lang ko"> 얇은 상단바 모드 추가 </p>
-            <p class="lang en de fr cn"> 'Narrow navbar mode' added </p>
-            <p class="lang ja"> 上部のバーを薄くってオプションを追加 </p>
-
-            <p class="lang ko">
-              <u>1<small style="font-size: 0.5rem">000</small></u> 아래의 숫자를 작게 표시하는 옵션 추가
-            </p>
-            <p class="lang en de fr cn">
-              Added options for apply smaller fonts on number under <u>1<small style="font-size: 0.5rem">000</small></u>
-            </p>
-            <p class="lang ja">
-              <u>1<small style="font-size: 0.5rem">000</small></u>以下の数字を小さく表示するオプションを追加
-            </p>
-
-            <p class="lang ko">
-              숫자 뒤 퍼센트 <u>12.3<small style="font-size: 0.5rem">%</small></u> 기호를 작게 표시
-            </p>
-            <p class="lang en de fr cn">
-              Smaller percentile sign: <u>12.3<small style="font-size: 0.5rem">%</small></u>
-            </p>
-            <p class="lang ja">
-              パーセント記号 <u>12.3<small style="font-size: 0.5rem">%</small></u> を小さく表示
-            </p>
-
-            <p class="lang ko"> Trust System 수정 </p>
-            <p class="lang en"> fix for Trust System </p>
-            <p class="lang ja"> フェイス合算の修正 </p>
-
-            <p class="lang ko"> 탭이 하나뿐이고, '하단 바 항목'이 전부 꺼져있으면 하단 바를 표시하지 않습니다 </p>
-            <p class="lang en de fr cn">
-              Footer bar will be hidden, when:
+            <div id="old_plugin_warning">
+              <script>
+                try {
+                  null?.a
+                  old_plugin_warning.parentNode.removeChild(old_plugin_warning)
+                } catch(e) {}
+              </script>
               <br />
-              * no '<span data-locale="ui.config.general._">footer elements</span>' selected
+              <p class="lang ko">
+                - OverlayPlugin 0.3, 예전 방식 웹소켓 오버레이는 더 이상 지원하지 않습니다.
+                <br />
+                ngld/OverlayPlugin으로 교체해 주십시오.
+              </p>
+              <p class="lang en fr de ja">
+                - Old OverlayPlugin (aka 'hibiyasleep version') is no longer supported!!
+                <br />
+                please get update from github.com/ngld/OverlayPlugin .
+              </p>
               <br />
-              * only one tab exists
-            </p>
-            <p class="lang ja">
-              タブが一つだけで、「下部バーの項目」がすべてオフになっている場合、下部バーを表示しません
-            </p>
+            </div>
+            
+            <h3> 0.8.14 'minne' - 2022/02/16 </h3>
+            <h3> 0.8.13 'viator in vitro' - 2021/12/08 </h3>
           </li>
         </ul>
       </ul>
       <footer>
         <div class="tabs">
-          Loading tabs...
+          请等待模板资源加载...
         </div>
         <span class="footer-stat">
           <span class="footer-rank">
@@ -409,3 +348,21 @@ window.addEventListener('load', e => {
     </main>
   </body>
 </html>
+<!--
+<style>
+    @font-face{
+      font-family:'微软雅黑';
+      src: url("//ffxiv-res.diemoe.net/SmartisanHei.woff2") format("woff2"),
+           url("//ffxiv-res.diemoe.net/SmartisanHei.ttf");
+      font-weight: normal;
+      font-style: normal;
+    }
+    @font-face{
+      font-family:'黑体';
+      src: url("//ffxiv-res.diemoe.net/SmartisanHei.woff2") format("woff2"),
+           url("//ffxiv-res.diemoe.net/SmartisanHei.ttf");
+      font-weight: normal;
+      font-style: normal;
+    }
+</style>
+-->

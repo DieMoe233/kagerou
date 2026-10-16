@@ -54,7 +54,7 @@
           "rank": "Rang courant",
           "rdps": "RDPS",
           "rhps": "RHPS",
-          "recover": "Soins totaux reçus / Dommages subis"
+          "recover": "Soins reçus / Dégâts subis"
         },
         "reset": "Annuler",
         "reset-this": "Annuler tout"
@@ -124,7 +124,8 @@
         "config-to-export": "Configuration à exporter",
         "all": "Tout",
         "data-fault": "Les  données sont incorrectes ou corrompues.",
-        "content-count": "Nombre de colonnes"
+        "content-count": "Nombre de colonnes",
+        "open-prompt": "Ouvrir une dialogue"
       },
       "etc": {
         "_": "Plus",
@@ -195,12 +196,16 @@
       "blm": "Mage noir (Occultiste)",
       "mch": "Machiniste",
       "sam": "Samouraï",
+      "rpr": "Faucheur",
       "rdm": "Mage rouge",
+      "vpr": "Rôdeur Vipère",
+      "pct": "Pictomancien",
       "blu": "Mage bleu",
       "dnc": "Danseur",
       "whm": "Mage blanc (Élémentaliste)",
       "sch": "Érudit",
       "ast": "Astromancien",
+      "sge": "Sage",
       "smn-pet": "Egi d'arcaniste",
       "sch-pet": "Egi d'érudit",
       "mch-pet": "Tourelle de machiniste",
@@ -211,16 +216,26 @@
       "language": "Langue",
       "significant_digit": {
         "_": "Précision décimale",
-        "dps": "Dommages par seconde (DPS)",
+        "dps": "Dégâts par seconde (DPS)",
+        "damage": "Dégâts totaux",
         "hps": "Soins par seconde (HPS)",
-        "accuracy": "Échec (Raté / Esquivé)",
-        "critical": "% de critique Touché/Soin"
+        "accuracy": "Taux de précision",
+        "critical": "Taux de critique"
+      },
+      "thousands_separator": {
+        "_": "Séparateur de milliers",
+        "none": "Aucun",
+        "period": "Point (.)",
+        "comma": "Virgule (,)",
+        "space": "Espace"
       },
       "myname": "Mon nom",
       "use_short_name": "Apparence des noms des joueurs",
       "use_skill_aliases": "Utiliser les alias de compétences",
       "use_tailing_pct": "Afficher % après la valeur",
-      "small_lower_numbers": "*Smaller font for under-k digits of DPS"
+      "numbers": "Format des nombres",
+      "small_lower_numbers": "*Smaller font for under-k digits of DPS",
+      "number_abbreviation": "Omettez le nombre en unités de 1000"
     },
     "element": {
       "narrow_nav": "*Narrower Top navigation bar"
@@ -229,7 +244,8 @@
   "col": {
     "i": {
       "_": "Info",
-      "icon": ["", "Class Icon"],
+      "icon": [" ", "Icône de classe"],
+      "rank": ["#", "Rang"],
       "class": ["Cls", "Classe/Job"],
       "owner": ["Propriétaire", "Propriétaire"],
       "name": ["Nom", "Nom"]
@@ -248,6 +264,7 @@
       "direct": ["DH", "Directe %"],
       "crit_direct": ["!!!", "Critique Hit% (!!!)"],
       "crittypes": ["D/!/!!!", "Direct/Critical/!!! Count"],
+      "critpcts": ["Crits%", "Direct/Critical/!!! %"],
       "max": ["Max", "Maxhit (w/o skillname)"],
       "maxskill": ["Max", "Maxhit (Nom de compétence seulement)"],
       "maxhit": ["Maxhit", "Maxhit"],

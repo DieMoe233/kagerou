@@ -124,7 +124,8 @@
         "config-to-export": "Auswählen was exportiert werden soll",
         "all": "Alles",
         "data-fault": "Die Daten falsch war.",
-        "content-count": "Anzahl der Teile"
+        "content-count": "Anzahl der Teile",
+        "open-prompt": "Öffnen Eingabefenster"
       },
       "etc": {
         "_": "Erweitert",
@@ -195,12 +196,16 @@
       "blm": "Schwarzmagier (Thaumaturg)",
       "mch": "Maschinist",
       "sam": "Samurai",
+      "rpr": "Schnitter",
       "rdm": "Rotermagier",
+      "vpr": "Viper",
+      "pct": "Piktomant",
       "blu": "Blaumagier",
       "dnc": "Tänzer",
       "whm": "Weißmagier (Druide)",
       "sch": "Gelehrter",
       "ast": "Astrologe",
+      "sge": "Weiser",
       "smn-pet": "Beschwörer (Hermetiker) Carbuncle/Egi",
       "sch-pet": "Gelehrter Egi",
       "mch-pet": "Maschinist Turm",
@@ -212,15 +217,25 @@
       "significant_digit": {
         "_": "Anzahl der Nachkommastellen",
         "dps": "DPS",
+        "damage": "Damage",
         "hps": "HPS",
         "accuracy": "Fehlschlag (Verfehlt / Angriffe)",
         "critical": "% der kritischen Treffer/Heilungen"
       },
+      "thousands_separator": {
+        "_": "Thousands separator",
+        "none": "None",
+        "period": "Period (.)",
+        "comma": "Comma (,)",
+        "space": "Space"
+      },
       "myname": "Mein Name",
       "use_short_name": "Darstellung von Spielernamen",
       "use_skill_aliases": "Benutze Alias für Fähigkeitsnamen",
+      "numbers": "Format",
       "use_tailing_pct": "*Display % after percentage value",
-      "small_lower_numbers": "*Smaller font for under-k digits of DPS"
+      "small_lower_numbers": "*Smaller font for under-k digits of DPS",
+      "number_abbreviation": "Lassen sie die zahl in einheiten von 1000 weg"
     },
     "element": {
       "narrow_nav": "*Narrower Top navigation bar"
@@ -230,6 +245,7 @@
     "i": {
       "_": "Info",
       "icon": [" ", "Class Icon"],
+      "rank": ["#", "Rank"],
       "class": ["Job", "Klasse/Job"],
       "owner": ["Besitzer", "Besitzer"],
       "name": ["Name", "Name"]
@@ -248,6 +264,7 @@
       "direct": ["DH", "*Direct Hit%"],
       "crit_direct": ["!!!", "*Critical Direct Hit% (!!!)"],
       "crittypes": ["D/!/!!!", "*Direct/Critical/!!! Count"],
+      "critpcts": ["Crits%", "*Direct/Critical/!!! %"],
       "max": ["Max", "Maximaler Schaden (ohne Fähigkeitsname)"],
       "maxskill": ["Max", "Maximaler Schaden Fähigkeitsname"],
       "maxhit": ["MaxSchaden", "Maximaler Schaden (mit Fähigkeitsname)"],

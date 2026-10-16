@@ -124,7 +124,8 @@
         "config-to-export": "Config to export",
         "all": "All",
         "data-fault": "Data is incorrect or broken.",
-        "content-count": "Column count"
+        "content-count": "Column count",
+        "open-prompt": "Use prompt()"
       },
       "etc": {
         "_": "More",
@@ -195,12 +196,16 @@
       "blm": "Black Mage (Thaumaturge)",
       "mch": "Machinist",
       "sam": "Samurai",
+      "rpr": "Reaper",
       "rdm": "Red Mage",
+      "vpr": "Viper",
+      "pct": "Pictomancer",
       "blu": "Blue Mage",
       "dnc": "Dancer",
       "whm": "White Mage (Conjurer)",
       "sch": "Scholar",
       "ast": "Astrologian",
+      "sge": "Sage",
       "smn-pet": "Summoner (Arcanist) Carbuncle/Egi",
       "sch-pet": "Scholar Egi",
       "mch-pet": "Machinist Turret",
@@ -212,15 +217,25 @@
       "significant_digit": {
         "_": "Decimal accuracy",
         "dps": "DPS",
+        "damage": "Damage",
         "hps": "HPS",
         "accuracy": "Failure (Miss / Swing)",
         "critical": "% of Critical hits/heals"
       },
+      "thousands_separator": {
+        "_": "Thousands separator",
+        "none": "None",
+        "comma": "Comma (,)",
+        "period": "Period (.)",
+        "space": "Space"
+      },
       "myname": "My name",
       "use_short_name": "Player Name Appearance",
       "use_skill_aliases": "Use skillname aliases",
+      "numbers": "Formats",
       "use_tailing_pct": "Display % after percentage value",
-      "small_lower_numbers": "Smaller font for under-k digits of DPS"
+      "small_lower_numbers": "Smaller font for under-k digits of DPS",
+      "number_abbreviation": "Abbreviate numbers using -k"
     },
     "element": {
       "narrow_nav": "Narrower Top navigation bar"
@@ -230,6 +245,7 @@
     "i": {
       "_": "Info",
       "icon": [" ", "Class Icon"],
+      "rank": ["#", "Rank"],
       "class": ["Cls", "Class/Job"],
       "owner": ["Owner", "Owner"],
       "name": ["Name", "Name"]
@@ -248,6 +264,7 @@
       "direct": ["DH", "Direct Hit%"],
       "crit_direct": ["!!!", "Critical Direct Hit% (!!!)"],
       "crittypes": ["D/!/!!!", "Direct/Critical/!!! Count"],
+      "critpcts": ["Crits%", "Direct/Critical/!!! %"],
       "max": ["Max", "Maxhit (w/o skillname)"],
       "maxskill": ["Max", "Maxhit (skillname only)"],
       "maxhit": ["Maxhit", "Maxhit"],

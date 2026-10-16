@@ -1,5 +1,5 @@
 .flex-column-i-icon /* default */    {
-  background-image: url('../img/classes.png');
+  background-image: url('../img/classes.png?v=6');
   background-size: 1100% 600%;
   background-repeat: no-repeat;
   background-position: 90% 60%;
@@ -15,6 +15,7 @@
 .class-arc > .flex-column-i-icon     { background-position: 50%  0% }
 .class-thm > .flex-column-i-icon     { background-position: 60%  0% }
 .class-acn > .flex-column-i-icon     { background-position: 70%  0% }
+.class-pct > .flex-column-i-icon     { background-position: 80%  0% }
 .class-cnj > .flex-column-i-icon     { background-position: 90%  0% }
 .class-pld > .flex-column-i-icon     { background-position:  0% 20% }
 .class-war > .flex-column-i-icon     { background-position: 10% 20% }
@@ -34,6 +35,8 @@
 .class-blu > .flex-column-i-icon     { background-position: 50% 40% }
 .class-gnb > .flex-column-i-icon     { background-position: 60% 40% }
 .class-dnc > .flex-column-i-icon     { background-position: 70% 40% }
+.class-rpr > .flex-column-i-icon     { background-position: 80% 40% }
+.class-sge > .flex-column-i-icon     { background-position: 90% 40% }
 .class-acn-pet > .flex-column-i-icon { background-position:  0% 60% }
 .class-garuda > .flex-column-i-icon  { background-position: 10% 60% }
 .class-ifrit  > .flex-column-i-icon  { background-position: 20% 60% }
@@ -42,6 +45,7 @@
 .class-selene > .flex-column-i-icon  { background-position: 50% 60% }
 .class-rook   > .flex-column-i-icon  { background-position: 60% 60% }
 .class-bishop > .flex-column-i-icon  { background-position: 70% 60% }
+.class-vpr > .flex-column-i-icon     { background-position: 80% 60% }
 .class-crp > .flex-column-i-icon     { background-position:  0% 80% }
 .class-bsm > .flex-column-i-icon     { background-position: 10% 80% }
 .class-arm > .flex-column-i-icon     { background-position: 20% 80% }

@@ -1,8 +1,8 @@
 'use strict'
 
-const VERSION = '0.8.2'
-const CODENAME = 'point zero'
-const DESCRIPTION = '「ゼロからスタートする」'
+const VERSION = '0.8.15'
+const CODENAME = 'Audite Nostalgia'
+const DESCRIPTION = 'その旋律は紡がれ受け継がれていく'
 
 const CONFIG_DEFAULT = {
   lang: 'cn',
@@ -73,6 +73,7 @@ const CONFIG_DEFAULT = {
   ],
   colwidth: {
     '_i-class': 2,
+    '_i-rank': 2,
     '_i-owner': 6,
     '_i-name': 6,
     '_deal-total': 4.5,
@@ -87,6 +88,7 @@ const CONFIG_DEFAULT = {
     '_deal-direct': 2.5,
     '_deal-crit_direct': 2.5,
     '_deal-crittypes': 4,
+    '_deal-critpcts': 6,
     '_deal-max': 2.5,
     '_deal-maxhit': 7,
     '_deal-maxskill': 5,
@@ -115,7 +117,7 @@ const CONFIG_DEFAULT = {
   },
   color: {
     'gauge-default': '#444',
-    'gauge-opacity': '0.45',
+    'gauge-opacity': 0.5,
     pld: 'rgb(21, 28, 100)', // Indigo 900 (B -10%)
     war: 'rgb(153, 23, 23)', // Red 900 (B -10%)
     drk: 'rgb(136, 14, 79)', // Pink 900
@@ -123,17 +125,21 @@ const CONFIG_DEFAULT = {
     mnk: 'rgb(255, 152, 0)', // Orange 500
     drg: 'rgb(63, 81, 181)', // Indigo 500
     brd: 'rgb(158, 157, 36)', // Lime 800
-    nin: 'rgb(211, 47, 47)', // Red 700 // 와! 시바! 진성! 닌자다!
+    nin: 'rgb(211, 47, 47)', // Red 700
+    rpr: 'rgb(254, 179, 0)', // Amber 600
+    vpr: 'rgb(216, 67, 21)', // Deep Orange 800
     smn: 'rgb(46, 125, 50)', // Green 800
     blm: 'rgb(126, 87, 194)', // Deep Purple 400
     mch: 'rgb(0, 151, 167)', // Cyan 700
     rdm: 'rgb(233, 30, 99)', // Pink 500
     blu: 'rgb(0, 185, 247)', // Light Blue 500
+    pct: 'rgb(253, 216, 53)', // Yellow 600
     dnc: 'rgb(244, 143, 177)', // Pink 200
     sam: 'rgb(255, 202, 40)', // Amber 400
     whm: 'rgb(117, 117, 117)', // Gray 600
     sch: 'rgb(121, 134, 203)', // Indigo 300
     ast: 'rgb(121, 85, 72)', // Brown 500
+    sge: 'rgb(79, 195, 247)', // Light Blue 300
     'smn-pet': 'rgba(46, 125, 50, 0.5)',
     'sch-pet': 'rgba(121, 134, 203, 0.5)',
     'mch-pet': 'rgba(0, 151, 167, 0.5)',
@@ -143,16 +149,19 @@ const CONFIG_DEFAULT = {
   format: {
     significant_digit: {
       dps: 0,
+      damage: 0,
       hps: 0,
       accuracy: 0,
       critical: 0
     },
+    thousands_separator: ',',
     merge_pet: true,
     myname: [],
     use_short_name: 0,
     use_skill_aliases: true,
     use_tailing_pct: true,
-    small_lower_numbers: false
+    small_lower_numbers: false,
+    number_abbreviation: false
   },
   filter: {
     unusual_spaces: false,
@@ -160,7 +169,6 @@ const CONFIG_DEFAULT = {
     jobless: true
   },
   element: {
-    'resize-handle': true,
     'narrow-nav': false,
     'hide-footer': false,
     'use-header-instead': false
@@ -171,16 +179,10 @@ const CONFIG_DEFAULT = {
     rhps: false
   },
   custom_css: `
-/* 여기에 사용자 스타일시트를 작성합니다.
- * CSS가 뭔지 모르시면 무시하셔도 되며, 자세한 구조는 소스 코드를
- * 직접 참조해주세요.
- * var()로 설정값 일부를 가져올 수 있습니다. */
-
-/* Write User-stylesheet here.
- * If you don't know what CSS is, you can ignore this section.
- * For details, please refer source code or DevTools directly.
- * some config value can be loaded by var(). */
-
+/* 这是你编写用户样式表的地方。
+ * 如果你不知道 CSS 是什么，请忽略它。
+ * 源代码中了解更多详情。
+ * 你可以使用 var() 来获取部分设置。 */
 /* .gauge { -webkit-filter: blur(0.2rem); } */
 `
 }
@@ -206,7 +208,8 @@ const COLUMN_SORTABLE = [
   'tank.damage',
   'tank.heal',
   'heal.per_second',
-  'heal.total'
+  'heal.total',
+  '-etc.death'
 ]
 const COLUMN_MERGEABLE = [
   'encdps', 'damage', 'damage%',
@@ -223,9 +226,9 @@ const COLUMN_USE_LARGER = {
 }
 
 const VALID_PLAYER_JOBS = [
-  'GLA', 'GLD', 'MRD', 'PUG', 'PGL', 'LNC', 'ROG', 'ARC', 'THM', 'ACN', 'CNJ',
-  'PLD', 'WAR', 'MNK', 'DRG', 'NIN', 'BRD', 'BLM', 'SMN', 'SCH', 'WHM', 'DRK',
-  'MCH', 'AST', 'SAM', 'RDM', 'BLU', 'GNB', 'DNC',
+  'GLA', 'GLD', 'MRD', 'PUG', 'PGL', 'LNC', 'ROG', 'ARC', 'THM', 'ACN', 'PCT', 'CNJ', 'VPR',
+  'PLD', 'WAR', 'MNK', 'DRG', 'NIN', 'RPR', 'BRD', 'BLM', 'SMN', 'SCH', 'WHM',
+  'DRK', 'MCH', 'AST', 'SGE', 'SAM', 'RDM', 'BLU', 'GNB', 'DNC',
   'CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL', 'MIN', 'BTN', 'FSH'
 ]
 
@@ -320,6 +323,10 @@ const COLUMN_INDEX = {
         return job
       }
     },
+    rank: {
+      v: _ => _.rank,
+      f: _ => `#${_}`
+    },
     owner: {
       v: _ => resolveClass(_.Job, _.name)[2],
       f: _ => `<span>${_}</span>`
@@ -349,7 +356,7 @@ const COLUMN_INDEX = {
         if(isNaN(_)) {
           return '---'
         }
-        return formatDps(_, +conf.format.significant_digit.dps)
+        return formatDps(_, conf.format)
       }
     },
     pct: {
@@ -360,7 +367,10 @@ const COLUMN_INDEX = {
         else return _ + (conf.format.use_tailing_pct? '<small>%</small>' : '')
       }
     },
-    total: 'damage',
+    total: {
+      v: 'damage',
+      f: (_, conf) => formatDps(_, conf.format, 'damage', true)
+    },
     failure: {
       v: _ => _.swings > 0? _.misses / _.swings * 100 : -1,
       f: (_, conf) =>
@@ -399,15 +409,28 @@ const COLUMN_INDEX = {
       v: _ => [_.DirectHitCount || '-', _.crithits || '-', _.CritDirectHitCount || '-'],
       f: _ => _.join('/')
     },
+    critpcts: {
+      v: _ => [_.DirectHitCount || 0, _.crithits || 0, _.CritDirectHitCount || 0, _.swings || 1],
+      f: (_, conf) => {
+        const swings = parseInt(_.pop()) || 1
+        _ = _.map(_ => (parseInt(_) / swings * 100).toFixed(0))
+
+        if(conf.format.use_tailing_pct) {
+          return _.map(_ => _ + '<small>%</small> ').join('')
+        } else {
+          return _.join('/')
+        }
+      }
+    },
     max: {
       v: 'MAXHIT',
-      f: _ => formatDps(_, 0)
+      f: (_, conf) => formatDps(_, conf.format, 'damage', true)
     },
     maxhit: {
       v: 'maxhit',
       f: (_, conf) => {
         let map = l.skillname(_, conf.format.use_skill_aliases)
-        return `${formatDps(map[1], 0)} <small>${map[0]}</small>`
+        return `${formatDps(map[1], conf.format, 'damage', true)} <small>${map[0]}</small>`
       }
     },
     maxskill: {
@@ -416,21 +439,15 @@ const COLUMN_INDEX = {
     },
     last10: {
       v: 'Last10DPS',
-      f: (_, conf) => {
-        return isNaN(_)? '0' : formatDps(_, conf.format.significant_digit.dps)
-      }
+      f: (_, conf) => isNaN(_)? '0' : formatDps(_, conf.format)
     },
     last30: {
       v: 'Last30DPS',
-      f: (_, conf) => {
-        return isNaN(_)? '0' : formatDps(_, conf.format.significant_digit.dps)
-      }
+      f: (_, conf) => isNaN(_)? '0' : formatDps(_, conf.format)
     },
     last60: {
       v: 'Last60DPS',
-      f: (_, conf) => {
-        return isNaN(_)? '0' : formatDps(_, conf.format.significant_digit.dps)
-      }
+      f: (_, conf) => isNaN(_)? '0' : formatDps(_, conf.format)
     }/*,
     last180: {
       v: _ => 'Last180DPS' in _? _.Last180 : NaN
@@ -440,11 +457,11 @@ const COLUMN_INDEX = {
   tank: {
     damage: {
       v: 'damagetaken',
-      f: _ => '-' + _
+      f: (_, conf) => '-' + formatDps(_, conf.format, 'damage', true)
     },
     heal: {
       v: 'healstaken',
-      f: _ => '+' + _
+      f: (_, conf) => '+' + formatDps(_, conf.format, 'damage', true)
     },
     parry: 'ParryPct',
     block: 'BlockPct',
@@ -456,7 +473,9 @@ const COLUMN_INDEX = {
       v: 'enchps',
       f: (_, conf) => {
         _ = pFloat(_)
-        return isNaN(_)? '0' : formatDps(_, conf.format.significant_digit.hps)
+        return isNaN(_)?
+          '0'
+        : formatDps(_, conf.format, 'hps')
       }
     },
     pct: {
@@ -467,7 +486,10 @@ const COLUMN_INDEX = {
         else return _ + '<small>%</small>'
       }
     },
-    total: 'healed',
+    total: {
+      v: 'healed',
+      f: (_, conf) => formatDps(_, conf.format, 'damage', true)
+    },
     over: {
       v: _ => _['OverHealPct'],
       f: _ => _ && _.replace? _.replace('%', '<small>%</small>') : '---'

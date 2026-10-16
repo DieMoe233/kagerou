@@ -124,7 +124,8 @@
         "config-to-export": "配置导出",
         "all": "全部",
         "data-fault": "数据不正确或损坏。",
-        "content-count": "列数"
+        "content-count": "列数",
+        "open-prompt": "打开提示"
       },
       "etc": {
         "_": "更多",
@@ -186,7 +187,7 @@
       "pld": "骑士(剑术师)",
       "war": "战士(斧术师)",
       "drk": "黑暗骑士",
-      "gnb": "Gunbreaker",
+      "gnb": "绝枪战士",
       "mnk": "武僧(格斗家)",
       "drg": "龙骑士(枪术师)",
       "brd": "吟游诗人(弓箭手)",
@@ -195,12 +196,16 @@
       "blm": "黑魔法师(咒术师)",
       "mch": "机工士",
       "sam": "武士",
+      "rpr": "钐镰客",
       "rdm": "赤魔法师",
+      "vpr": "蝰蛇剑士",
+      "pct": "绘灵法师",
       "blu": "青魔法师",
-      "dnc": "Dancer",
+      "dnc": "舞者",
       "whm": "白魔法师(幻术师)",
       "sch": "学者",
       "ast": "占星术士",
+      "sge": "贤者",
       "smn-pet": "召唤师(秘术师)宝石兽",
       "sch-pet": "学者小仙女",
       "mch-pet": "机工士炮塔",
@@ -212,15 +217,25 @@
       "significant_digit": {
         "_": "小数点精度",
         "dps": "DPS",
+        "damage": "Damage",
         "hps": "HPS",
         "accuracy": "命中率",
         "critical": "伤害和治疗百分比"
       },
+      "thousands_separator": {
+        "_": "Thousands separator",
+        "none": "None",
+        "period": "Period (.)",
+        "comma": "Comma (,)",
+        "space": "Space"
+      },
       "myname": "自己的名字",
       "use_short_name": "玩家名字表示方法（国服无效）",
       "use_skill_aliases": "使用技能名缩写",
+      "numbers": "数字格式",
       "use_tailing_pct": "在百分比数值后显示百分号",
-      "small_lower_numbers": "*Smaller font for under-k digits of DPS"
+      "small_lower_numbers": "小于1000的数字以小字体显示",
+      "number_abbreviation": "省略以1000为单位的数字"
     },
     "element": {
       "narrow_nav": "*Narrower Top navigation bar"
@@ -230,6 +245,7 @@
     "i": {
       "_": "信息",
       "icon": [" ", "职业图标"],
+      "rank": ["#", "Rank"],
       "class": ["职业", "职业/特职"],
       "owner": ["主人", "所有者"],
       "name": ["名字", "名字"]
@@ -248,6 +264,7 @@
       "direct": ["直%", "直击率%"],
       "crit_direct": ["直暴!!", "直击暴击率%(!!!)"],
       "crittypes": ["直/暴/直暴", "直击/暴击/直暴击次数"],
+      "critpcts": ["直/暴/直暴", "直击率/暴击率/直暴率%"],
       "max": ["最高伤害", "最高伤害（无技能名）"],
       "maxskill": ["最高伤害", "最高伤害（仅技能名）"],
       "maxhit": ["最高伤害", "最高伤害带技能名"],

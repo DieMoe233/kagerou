@@ -4,21 +4,22 @@
     <meta charset="utf-8" />
     <title> kagerou - Settings </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,700">
-    <link rel="stylesheet" href="../overlay/css/reset.css?v=Fireworks-In-The-Summer-End" />
-    <link rel="stylesheet" href="index.css?v=Fireworks-In-The-Summer-End" />
-    <link rel="stylesheet" href="media.css?v=Fireworks-In-The-Summer-End" />
-    <link rel="stylesheet" href="dialog.css?v=Fireworks-In-The-Summer-End" />
-    <link rel="stylesheet" href="../share/css/job-icons.css?v=Fireworks-In-The-Summer-End" />
-    <script src="lib/sortable-1.7.0-min.js"> </script>
-    <script src="../share/lib/util.js?v=Fireworks-In-The-Summer-End"> </script>
-    <script src="../share/lib/locale.js?v=Fireworks-In-The-Summer-End"> </script>
-    <script src="../share/lib/config.js?v=Fireworks-In-The-Summer-End"> </script>
-    <script src="lib/dialog.js?v=Fireworks-In-The-Summer-End"> </script>
-    <script src="lib/ui.js?v=Fireworks-In-The-Summer-End"> </script>
-    <script src="lib/tabconfig.js?v=Fireworks-In-The-Summer-End"> </script>
-    <script src="lib/import-export.js?v=Fireworks-In-The-Summer-End"> </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"> </script>
+    <link rel="stylesheet" href="../overlay/css/reset.css?v=v77" />
+    <link rel="stylesheet" href="index.css?v=v77" />
+    <link rel="stylesheet" href="media.css?v=v77" />
+    <link rel="stylesheet" href="dialog.css?v=v77" />
+    <link rel="stylesheet" href="../share/css/job-icons.css?v=v77" />
+    <link rel="stylesheet" href="/font/Smartisan Compact CNS Light/?replaceName=微软雅黑" />
+    <link rel="stylesheet" href="/font/Smartisan Compact CNS Light/?replaceName=黑体" />
+    <script src="lib/sortable-1.10.2-min.js"> </script>
+    <script src="../share/lib/util.js?v=v77"> </script>
+    <script src="../share/lib/locale.js?v=v77"> </script>
+    <script src="../share/lib/config.js?v=v77"> </script>
+    <script src="lib/dialog.js?v=v77"> </script>
+    <script src="lib/ui.js?v=v77"> </script>
+    <script src="lib/tabconfig.js?v=v77"> </script>
+    <script src="lib/import-export.js?v=v77"> </script>
+    <script src="./ace-1.2.6/ace.js"> </script>
 
     <template id="template-tab">
       <li class="draggable">
@@ -277,6 +278,20 @@ document.addEventListener('DOMContentLoaded', _ => {
                    style="flex-grow: 50;"/>
           </p>
           <p class="control">
+            <label for="input-element-narrow-nav"
+                   data-locale="config.element.narrow_nav">
+              상단바를 얇게
+            </label>
+            <input type="checkbox" id="input-element-narrow-nav"
+                   data-type="boolean"
+                   data-config-key="element.narrow-nav" />
+          </p>
+        </article>
+        <article>
+          <h3 data-locale="config.format.numbers">
+            숫자 표현
+          </h3>
+          <p class="control">
             <label for="input-format-use_tailing_pct"
                    data-locale="config.format.use_tailing_pct">
               백분율 값 뒤에 % 기호를 표시
@@ -286,22 +301,35 @@ document.addEventListener('DOMContentLoaded', _ => {
                    data-config-key="format.use_tailing_pct" />
           </p>
           <p class="control">
-            <label for="input-format-small-lower-numbers"
+            <label for="input-format-small_lower_numbers"
                    data-locale="config.format.small_lower_numbers">
               DPS 값의 1000 미만을 작게 표시
             </label>
-            <input type="checkbox" id="input-format-small-lower-numbers"
+            <input type="checkbox" id="input-format-small_lower_numbers"
                    data-type="boolean"
                    data-config-key="format.small_lower_numbers" />
           </p>
           <p class="control">
-            <label for="input-element-narrow-nav"
-                   data-locale="config.element.narrow_nav">
-              상단바를 얇게
+            <label for="input-format-thousands_separator"
+                   data-locale="config.format.thousands_separator._">
+              천 단위 구분자
             </label>
-            <input type="checkbox" id="input-element-narrow-nav"
+            <select id="input-format-thousands_separator"
+                    data-config-key="format.thousands_separator">
+              <option value="" data-locale="config.format.thousands_separator.none">없음</option>
+              <option value="," data-locale="config.format.thousands_separator.comma">쉼표 (,)</option>
+              <option value="." data-locale="config.format.thousands_separator.period">마침표 (.)</option>
+              <option value=" " data-locale="config.format.thousands_separator.space">띄어쓰기</option>
+            </select>
+          </p>
+          <p class="control">
+            <label for="input-format-number_abbreviation"
+                   data-locale="config.format.number_abbreviation">
+              천 단위 생략 사용
+            </label>
+            <input type="checkbox" id="input-format-number_abbreviation"
                    data-type="boolean"
-                   data-config-key="element.narrow-nav" />
+                   data-config-key="format.number_abbreviation" />
           </p>
         </article>
         <article>
@@ -335,6 +363,21 @@ document.addEventListener('DOMContentLoaded', _ => {
               </label>
               <input type="range" id="input-format-significant_digit-hps"
                      data-config-key="format.significant_digit.hps"
+                     min="0" step="1" max="2" />
+            </span>
+          </p>
+          <p class="control">
+            <label for="input-format-significant_digit-damage"
+                   data-locale="config.format.significant_digit.damage">
+              대미지 값
+            </label>
+            <span class="input-group">
+              <label class="input-value"
+                     for="input-format-significant_digit-damage">
+                2
+              </label>
+              <input type="range" id="input-format-significant_digit-damage"
+                     data-config-key="format.significant_digit.damage"
                      min="0" step="1" max="2" />
             </span>
           </p>
@@ -391,6 +434,7 @@ document.addEventListener('DOMContentLoaded', _ => {
                    data-type="boolean"
                    data-config-key="element.use-header-instead" />
           </p>
+        </article>
         <article>
           <h3 data-locale="ui.config.general.footer._"> 하단 바 항목 </h3>
           <p class="control">
@@ -422,7 +466,7 @@ document.addEventListener('DOMContentLoaded', _ => {
           </p>
         </article>
         <article>
-          <h3 data-locale="ui.config.general.reset"> Re:제로 </h3>
+          <h3 data-locale="ui.config.general.reset"> 재설정 </h3>
           <p class="control">
             <label for="button-reset-all"
                    data-locale="ui.config.general.reset-this">
@@ -891,6 +935,19 @@ document.addEventListener('DOMContentLoaded', _ => {
             </span>
           </p>
           <p class="control">
+            <label for="input-color-rpr" data-locale="config.color.rpr">
+              리퍼
+            </label>
+            <span class="input-group">
+              <label class="input-value-style job class-rpr" for="input-color-rpr">
+                <span class="flex-column-i-icon"></span>
+              </label>
+              <input type="text" id="input-color-rpr" style="width: 10rem"
+                     data-config-key="color.rpr"
+                     data-style="background" />
+            </span>
+          </p>
+          <p class="control">
             <label for="input-color-smn" data-locale="config.color.smn">
               소환사 <span class="text-muted">(비술사)</span>
             </label>
@@ -970,7 +1027,7 @@ document.addEventListener('DOMContentLoaded', _ => {
           </p>
           <p class="control">
             <label for="input-color-dnc" data-locale="config.color.dnc">
-              무희
+              무도가
             </label>
             <span class="input-group">
               <label class="input-value-style job class-dnc" for="input-color-dnc">
@@ -978,6 +1035,32 @@ document.addEventListener('DOMContentLoaded', _ => {
               </label>
               <input type="text" id="input-color-dnc" style="width: 10rem"
                      data-config-key="color.dnc"
+                     data-style="background" />
+            </span>
+          </p>
+          <p class="control">
+            <label for="input-color-vpr" data-locale="config.color.vpr">
+              Viper
+            </label>
+            <span class="input-group">
+              <label class="input-value-style job class-vpr" for="input-color-vpr">
+                <span class="flex-column-i-icon"></span>
+              </label>
+              <input type="text" id="input-color-vpr" style="width: 10rem"
+                     data-config-key="color.vpr"
+                     data-style="background" />
+            </span>
+          </p>
+          <p class="control">
+            <label for="input-color-pct" data-locale="config.color.pct">
+              Pictomancer
+            </label>
+            <span class="input-group">
+              <label class="input-value-style job class-pct" for="input-color-pct">
+                <span class="flex-column-i-icon"></span>
+              </label>
+              <input type="text" id="input-color-pct" style="width: 10rem"
+                     data-config-key="color.pct"
                      data-style="background" />
             </span>
           </p>
@@ -1022,6 +1105,19 @@ document.addEventListener('DOMContentLoaded', _ => {
               </label>
               <input type="text" id="input-color-ast" style="width: 10rem"
                      data-config-key="color.ast"
+                     data-style="background" />
+            </span>
+          </p>
+          <p class="control">
+            <label for="input-color-sge" data-locale="config.color.sge">
+              현자
+            </label>
+            <span class="input-group">
+              <label class="input-value-style job class-sge" for="input-color-sge">
+                <span class="flex-column-i-icon"></span>
+              </label>
+              <input type="text" id="input-color-sge" style="width: 10rem"
+                     data-config-key="color.sge"
                      data-style="background" />
             </span>
           </p>
@@ -1186,6 +1282,11 @@ document.addEventListener('DOMContentLoaded', _ => {
                 <input type="text" id="import-text" class="text-center" />
               </p>
               <p class="control text-right">
+                <button style="color: inherit;"
+                        id="import-with-prompt"
+                        data-locale="ui.config.i/e.open-prompt">
+                  입력 창 열기
+                </button>
                 <button id="import-button"
                         data-locale="ui.config.i/e.import">
                   가져오기
@@ -1238,7 +1339,12 @@ document.addEventListener('DOMContentLoaded', _ => {
                 </select>
               </p>
               <p class="control text-right">
-                <button id="export-confirm"
+                <button style="color: inherit;"
+                        id="export-with-prompt"
+                        data-locale="ui.config.i/e.open-prompt">
+                  입력 창 열기
+                </button>
+                <button id="export-button"
                         data-locale="ui.config.i/e.export">
                   내보내기
                 </button>
@@ -1246,8 +1352,10 @@ document.addEventListener('DOMContentLoaded', _ => {
             </article>
             <div class="tabconfig-content text-center"
                  style="height: calc(100% - 12.375rem);">
-              <p data-locale="ui.config.i/e.copy-this">
-                아래의 값을 전부 복사하세요:
+              <p>
+                <span data-locale="ui.config.i/e.copy-this">
+                  아래의 값을 전부 복사하세요:
+                </span>
               </p>
               <p>
                 <input type="text" id="export-text" class="text-center" />

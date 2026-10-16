@@ -131,7 +131,7 @@
     push(data) {
       if(!data || !data.Encounter || data.Encounter.hits < 1) return
 
-      if(this.isNewEncounter(data.Encounter, data.isActive)) {
+      if(this.isNewEncounter(data.Encounter)) {
         if(config.get('format.myname').length === 0
         && NICK_REGEX.test(data.Encounter.title)) {
           let nick = NICK_REGEX.exec(data.Encounter.title)[1]
@@ -158,27 +158,25 @@
       }
     }
 
-    updateLastEncounter(encounter, isActive) {
+    updateLastEncounter(encounter) {
       this.lastEncounter = {
         hits: encounter.hits,
         region: encounter.CurrentZoneName,
         damage: encounter.damage,
-        duration: parseInt(encounter.DURATION),
-        isActive: isActive
+        duration: parseInt(encounter.DURATION)
       }
     }
 
-    isNewEncounter(encounter, isActive) {
+    isNewEncounter(encounter) {
       let really = (
         !this.lastEncounter
       || this.lastEncounter.region !== encounter.CurrentZoneName
-      || this.lastEncounter.isActive !== isActive
+      || this.lastEncounter.duration > parseInt(encounter.DURATION)
       // ACT-side bug (scrambling data) making this invalid!
-      // || this.lastEncounter.duration > parseInt(encounter.DURATION)
       // || this.lastEncounter.damage > encounter.damage
       // || this.lastEncounter.hits > encounter.hits
       )
-      this.updateLastEncounter(encounter, isActive)
+      this.updateLastEncounter(encounter)
       return really
     }
 

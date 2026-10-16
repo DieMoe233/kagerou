@@ -4,21 +4,22 @@
     <meta charset="utf-8" />
     <title> kagerou - Settings </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../overlay/css/reset.css?v=v77" />
-    <link rel="stylesheet" href="index.css?v=v77" />
-    <link rel="stylesheet" href="media.css?v=v77" />
-    <link rel="stylesheet" href="dialog.css?v=v77" />
-    <link rel="stylesheet" href="../share/css/job-icons.css?v=v77" />
+    <link rel="stylesheet" href="https://gfonts.diemoe.net/css?family=Roboto+Mono:400,700|Roboto:400,700">
+    <link rel="stylesheet" href="../overlay/css/reset.css?v=v78" />
+    <link rel="stylesheet" href="index.css?v=v78" />
+    <link rel="stylesheet" href="media.css?v=v78" />
+    <link rel="stylesheet" href="dialog.css?v=v78" />
+    <link rel="stylesheet" href="../share/css/job-icons.css?v=v78" />
     <link rel="stylesheet" href="/font/Smartisan Compact CNS Light/?replaceName=微软雅黑" />
     <link rel="stylesheet" href="/font/Smartisan Compact CNS Light/?replaceName=黑体" />
-    <script src="lib/sortable-1.10.2-min.js"> </script>
-    <script src="../share/lib/util.js?v=v77"> </script>
-    <script src="../share/lib/locale.js?v=v77"> </script>
-    <script src="../share/lib/config.js?v=v77"> </script>
-    <script src="lib/dialog.js?v=v77"> </script>
-    <script src="lib/ui.js?v=v77"> </script>
-    <script src="lib/tabconfig.js?v=v77"> </script>
-    <script src="lib/import-export.js?v=v77"> </script>
+    <script src="lib/sortable-1.10.2-min.js?v=v78"> </script>
+    <script src="../share/lib/util.js?v=v78"> </script>
+    <script src="../share/lib/locale.js?v=v78"> </script>
+    <script src="../share/lib/config.js?v=v78"> </script>
+    <script src="lib/dialog.js?v=v78"> </script>
+    <script src="lib/ui.js?v=v78"> </script>
+    <script src="lib/tabconfig.js?v=v78"> </script>
+    <script src="lib/import-export.js?v=v78"> </script>
     <script src="./ace-1.2.6/ace.js"> </script>
 
     <template id="template-tab">
@@ -1037,6 +1038,46 @@ document.addEventListener('DOMContentLoaded', _ => {
                      data-config-key="color.dnc"
                      data-style="background" />
             </span>
+			<p class="control">
+            <label for="input-color-vpr" data-locale="config.color.vpr">
+              바이퍼
+            </label>
+            <span class="input-group">
+              <label class="input-value-style job class-vpr" for="input-color-vpr">
+                <span class="flex-column-i-icon"></span>
+              </label>
+              <input type="text" id="input-color-vpr" style="width: 10rem"
+                     data-config-key="color.vpr"
+                     data-style="background" />
+            </span>
+          </p>
+		  <p class="control">
+            <label for="input-color-pct" data-locale="config.color.pct">
+              픽토맨서
+            </label>
+            <span class="input-group">
+              <label class="input-value-style job class-pct" for="input-color-pct">
+                <span class="flex-column-i-icon"></span>
+              </label>
+              <input type="text" id="input-color-pct" style="width: 10rem"
+                     data-config-key="color.pct"
+                     data-style="background" />
+            </span>
+          </p>
+          </p>
+       <p class="control">
+            <label for="input-color-bst" data-locale="config.color.bst">
+              픽토맨서
+            </label>
+            <span class="input-group">
+              <label class="input-value-style job class-bst" for="input-color-bst">
+                <span class="flex-column-i-icon"></span>
+              </label>
+              <input type="text" id="input-color-bst" style="width: 10rem"
+                     data-config-key="color.bst"
+                     data-style="background" />
+            </span>
+          </p>
           </p>
           <p class="control">
             <label for="input-color-vpr" data-locale="config.color.vpr">
